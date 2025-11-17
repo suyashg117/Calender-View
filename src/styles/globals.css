@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
+
+    --primary: 199 89% 48%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 199 89% 48%;
+
+    --radius: 0.5rem;
+    
+    /* Calendar-specific colors */
+    --calendar-today: 199 89% 48%;
+    --calendar-hover: 199 89% 95%;
+    --calendar-selected: 199 89% 90%;
+    --calendar-other-month: 0 0% 60%;
+    --calendar-grid: 0 0% 93%;
+    --calendar-focus-ring: 199 89% 48%;
+    
+    /* Event colors */
+    --event-blue: 199 89% 48%;
+    --event-green: 142 71% 45%;
+    --event-purple: 262 83% 58%;
+    --event-orange: 25 95% 53%;
+    --event-red: 0 84% 60%;
+    
+    /* Animations */
+    --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 9%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 199 89% 48%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 199 89% 48%;
+    
+    --calendar-today: 199 89% 48%;
+    --calendar-hover: 199 89% 15%;
+    --calendar-selected: 199 89% 20%;
+    --calendar-other-month: 0 0% 45%;
+    --calendar-grid: 0 0% 20%;
+    --calendar-focus-ring: 199 89% 48%;
+    
+    --event-blue: 199 89% 48%;
+    --event-green: 142 71% 45%;
+    --event-purple: 262 83% 58%;
+    --event-orange: 25 95% 53%;
+    --event-red: 0 84% 60%;
+    
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 0 0% 96%;
+    --sidebar-primary: 199 89% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 16%;
+    --sidebar-accent-foreground: 0 0% 96%;
+    --sidebar-border: 0 0% 16%;
+    --sidebar-ring: 199 89% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+@layer components {
+  .rdp {
+    --rdp-cell-size: 2.25rem; /* 36px = w-9 */
+  }
+
+  .rdp-head_cell {
+    width: var(--rdp-cell-size);
+    min-width: var(--rdp-cell-size);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rdp-cell {
+    width: var(--rdp-cell-size);
+    min-width: var(--rdp-cell-size);
+    flex-shrink: 0;
+  }
+}
+
