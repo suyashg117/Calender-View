@@ -60,8 +60,13 @@ const PaginationLink = ({
 );
 PaginationLink.displayName = "PaginationLink";
 
+// -------------------------
+// FIXED: Removed duplicate “size” conflicts
+// -------------------------
+
 const PaginationPrevious = ({
   className,
+  // <-- prevents duplicate size prop
   ...props
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
@@ -78,6 +83,7 @@ PaginationPrevious.displayName = "PaginationPrevious";
 
 const PaginationNext = ({
   className,
+  // <-- prevents duplicate size prop
   ...props
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
