@@ -13,7 +13,7 @@ type ToastItem = {
   title?: string;
   description?: string;
   action?: React.ReactNode;
-  [key: string]:any; // for other props your Toast may accept
+  key?: string; // for other props your Toast may accept
 };
 export function Toaster() {
   const toasts: ToastItem[] = [

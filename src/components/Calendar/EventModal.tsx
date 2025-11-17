@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Button } from "../../components/primitives/Button";
-import { Label } from "../ui/Label";
 import {
   Dialog,
   DialogContent,
@@ -8,6 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../../components/primitives/Modal";
+import { formatDate } from "../../utils/date.utils";
 import {
   Select,
   SelectContent,
@@ -15,9 +15,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../primitives/Select";
-import { Textarea } from "../ui/Textarea";
-import { formatDate } from "../../utils/date.utils";
 import { Input } from "../ui/Input";
+import { Label } from "../ui/Label";
+import { Textarea } from "../ui/Textarea";
 import type { CalendarEvent } from "./CalendarView.types";
 
 interface EventModalProps {
@@ -60,39 +60,43 @@ export const EventModal = ({
   });
 
   useEffect(() => {
-    if (event) {
-      setFormData({
-        title: event.title,
-        description: event.description || "",
-        startDate: formatDate(event.startDate, "yyyy-MM-dd"),
-        startTime: formatDate(event.startDate, "HH:mm"),
-        endDate: formatDate(event.endDate, "yyyy-MM-dd"),
-        endTime: formatDate(event.endDate, "HH:mm"),
-        color: event.color || "blue",
-      });
-    } else if (initialDate) {
-      const dateStr = formatDate(initialDate, "yyyy-MM-dd");
-      const hour =
-        initialHour !== undefined
-          ? initialHour.toString().padStart(2, "0")
-          : "09";
-      const nextHour =
-        initialHour !== undefined
-          ? (initialHour + 1).toString().padStart(2, "0")
-          : "10";
+    Promise.resolve().then(() => {
+      if (event) {
+        setFormData({
+          title: event.title,
+          description: event.description || "",
+          startDate: formatDate(event.startDate, "yyyy-MM-dd"),
+          startTime: formatDate(event.startDate, "HH:mm"),
+          endDate: formatDate(event.endDate, "yyyy-MM-dd"),
+          endTime: formatDate(event.endDate, "HH:mm"),
+          color: event.color || "blue",
+        });
+        return;
+      }
 
-      setFormData({
-        title: "",
-        description: "",
-        startDate: dateStr,
-        startTime: `${hour}:00`,
-        endDate: dateStr,
-        endTime: `${nextHour}:00`,
-        color: "blue",
-      });
-    }
+      if (initialDate) {
+        const dateStr = formatDate(initialDate, "yyyy-MM-dd");
+        const hour =
+          initialHour !== undefined
+            ? initialHour.toString().padStart(2, "0")
+            : "09";
+        const nextHour =
+          initialHour !== undefined
+            ? (initialHour + 1).toString().padStart(2, "0")
+            : "10";
+
+        setFormData({
+          title: "",
+          description: "",
+          startDate: dateStr,
+          startTime: `${hour}:00`,
+          endDate: dateStr,
+          endTime: `${nextHour}:00`,
+          color: "blue",
+        });
+      }
+    });
   }, [event, initialDate, initialHour]);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -218,9 +222,9 @@ export const EventModal = ({
             <Label htmlFor="color">Color</Label>
             <Select
               value={formData.color}
-              onValueChange={(value: any) =>
-                setFormData({ ...formData, color: value as any })
-              }
+              onValueChange={(
+                value: "blue" | "green" | "purple" | "orange" | "red"
+              ) => setFormData({ ...formData, color: value })}
             >
               <SelectTrigger id="color">
                 <SelectValue />
